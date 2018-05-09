@@ -47,14 +47,9 @@ class Matrix {
 	
 	public function multiplyMatrix(Matrix $matrix): Matrix
 	{
-		if($this->rows !== $matrix->cols) {
-			echo "Матрицы не согласованы!\n";
-			exit;
-		}
-
 		$res = [];
 		for ($i=0; $i < $this->rows; $i++) {
-			for ($j=0; $j < $this->cols; $j++) {
+			for ($j=0; $j < $matrix->cols; $j++) {
 				$rowVector = new Vector($this->matrix[$i]);
 				$colVector = new Vector($matrix->getCol($j));
 				$res[$i][$j] = array_sum($rowVector->multiplyVector($colVector)->asArray());
@@ -63,6 +58,11 @@ class Matrix {
 		
 		return new Matrix($res);
 	}
+
+	public function isSquare(): bool
+    {
+        return $this->rows === $this->cols;
+    }
 	
 	public function getCol(int $index): array
     {

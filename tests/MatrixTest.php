@@ -56,4 +56,122 @@ class MatrixTest extends TestCase
             ]
         ];
     }
+
+    public function testGetCol(): void
+    {
+        $data = [
+            [1,1,5,1],
+            [1,1,6,1],
+            [1,1,7,1],
+        ];
+
+        $m = new Matrix($data);
+        $this->assertEquals([5,6,7], $m->getCol(2));
+    }
+
+    public function testIsSquare()
+    {
+        $data = [
+            [1,1,5,1],
+            [1,1,6,1],
+            [1,1,7,1],
+        ];
+        $m = new Matrix($data);
+        $this->assertFalse($m->isSquare());
+
+        $data = [
+            [1,1],
+            [1,1],
+        ];
+        $m = new Matrix($data);
+        $this->assertTrue($m->isSquare());
+    }
+
+    public function testAsArray(): void
+    {
+        $data = [
+            [1,1,5,1],
+            [1,1,6,1],
+            [1,1,7,1],
+        ];
+
+        $m = new Matrix($data);
+        $this->assertEquals($data, $m->asArray());
+    }
+
+
+    public function testMultiplyScalar(): void
+    {
+        $data = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9],
+        ];
+
+        $res = [
+            [2,4,6],
+            [8,10,12],
+            [14,16,18],
+        ];
+
+        $m = new Matrix($data);
+        $m2 = new Matrix($res);
+        $this->assertEquals($m2, $m->multiplyScalar(2));
+    }
+
+    /**
+     * @param $a
+     * @param $b
+     * @param $c
+     * @dataProvider multiplyMatrix
+     */
+    public function testMultiplyMatrix($a, $b, $c)
+    {
+        $m1 = new Matrix($a);
+        $m2 = new Matrix($b);
+        $res = new Matrix($c);
+        $this->assertEquals($res, $m1->multiplyMatrix($m2));
+    }
+
+    public function multiplyMatrix()
+    {
+        return [
+            // Case 1
+            [
+                [
+                    [1,2,3],
+                    [4,5,6],
+                    [7,-1,-2],
+                ],
+                [
+                    [6,5,4],
+                    [3,2,1],
+                    [0,-1,-2],
+                ],
+                [
+                    [12,6,0],
+                    [39,24,9],
+                    [39,35,31],
+                ]
+            ],
+
+
+            // Case 2
+            [
+                [
+                    [1,2,3],
+                    [4,5,-1]
+                ],
+                [
+                    [1,2,3,4],
+                    [4,3,2,1],
+                    [0,-1,-2,-3],
+                ],
+                [
+                    [9,5,1,-3],
+                    [24,24,24,24],
+                ]
+            ],
+        ];
+    }
 }
