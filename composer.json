@@ -1,0 +1,20 @@
+{
+  "name": "IvanArtamonov/SimpleMath",
+  "description": "Basic math operations",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Ivan Artamonov",
+      "email": "i.o.artamonov@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"SimpleMath\\": "src/"}
+  },
+  "autoload-dev": {
+    "psr-4": { "SimpleMath\\Tests\\": "tests/" }
+  },
+  "require": {
+    "phpunit/phpunit": "7.1.5"
+  }
+}
