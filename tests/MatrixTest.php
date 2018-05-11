@@ -57,6 +57,19 @@ class MatrixTest extends TestCase
         ];
     }
 
+    public function testGetValue()
+    {
+        $data = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9],
+        ];
+        $m = new Matrix($data);
+
+        $this->assertEquals(4, $m->getValue(1, 0));
+        $this->assertEquals(8, $m->getValue(2, 1));
+    }
+
     public function testGetCol(): void
     {
         $data = [
@@ -97,6 +110,51 @@ class MatrixTest extends TestCase
 
         $m = new Matrix($data);
         $this->assertEquals($data, $m->asArray());
+    }
+
+    public function testMinus()
+    {
+        $data1 = [
+            [2,5],
+            [6,7],
+        ];
+        $data2 = [
+            [1,2],
+            [3,4],
+        ];
+        $data3 = [
+            [1,3],
+            [3,3],
+        ];
+
+        $m1 = new Matrix($data1);
+        $m2 = new Matrix($data2);
+        $m3 = new Matrix($data3);
+
+        $this->assertEquals($m3, $m1->minus($m2));
+    }
+
+
+    public function testPlus()
+    {
+        $data1 = [
+            [2,5],
+            [6,7],
+        ];
+        $data2 = [
+            [1,2],
+            [3,4],
+        ];
+        $data3 = [
+            [3,7],
+            [9,11],
+        ];
+
+        $m1 = new Matrix($data1);
+        $m2 = new Matrix($data2);
+        $m3 = new Matrix($data3);
+
+        $this->assertEquals($m3, $m1->plus($m2));
     }
 
 

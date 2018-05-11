@@ -32,6 +32,36 @@ class Matrix {
 			echo "\n";
 		}
 	}
+
+	public function getValue($rowIndex, $colIndex)
+    {
+        return $this->matrix[$rowIndex][$colIndex];
+    }
+
+
+	public function minus(Matrix $m): Matrix
+    {
+        $res = [];
+        for ($i=0; $i < $this->rows; $i++) {
+            for ($j=0; $j < $this->cols; $j++) {
+                $res[$i][$j] = $this->matrix[$i][$j] - $m->getValue($i, $j);
+            }
+        }
+
+        return new Matrix($res);
+    }
+
+    public function plus(Matrix $m): Matrix
+    {
+        $res = [];
+        for ($i=0; $i < $this->rows; $i++) {
+            for ($j=0; $j < $this->cols; $j++) {
+                $res[$i][$j] = $this->matrix[$i][$j] + $m->getValue($i, $j);
+            }
+        }
+
+        return new Matrix($res);
+    }
 	
 	public function multiplyScalar($scalar): Matrix
 	{
