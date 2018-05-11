@@ -174,4 +174,23 @@ class MatrixTest extends TestCase
             ],
         ];
     }
+
+
+    public function testTranspose()
+    {
+        $before = [
+            [1,2,3],
+            [4,5,6]
+        ];
+        $after = [
+            [1,4],
+            [2,5],
+            [3,6],
+        ];
+
+        $m1 = new Matrix($before);
+        $m2 = new Matrix($after);
+
+        $this->assertEquals($m2, $m1->transpose());
+    }
 }

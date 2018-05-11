@@ -78,4 +78,17 @@ class Matrix {
 		return $this->matrix;
 	}
 
+	public function transpose(): Matrix
+    {
+	    $data = [];
+
+	    for ($i=0; $i<$this->rows; $i++) {
+	        for ($j=0; $j<$this->cols; $j++) {
+	            $data[$j][$i] = $this->matrix[$i][$j];
+            }
+        }
+
+        return new Matrix($data);
+    }
+
 }
