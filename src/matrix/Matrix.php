@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleMath;
+namespace SimpleMath\matrix;
 
 class Matrix
 {
@@ -102,6 +102,16 @@ class Matrix
             $col[] = $this->matrix[$i][$index];
         }
         return $col;
+    }
+
+    public function getRow(int $index): array
+    {
+        return $this->matrix[$index];
+    }
+
+    public function setRow(int $index, array $newRow)
+    {
+        $this->matrix[$index] = $newRow;
     }
 
     public function asArray(): array

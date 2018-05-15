@@ -2,7 +2,7 @@
 
 namespace SimpleMath\Tests;
 
-use SimpleMath\Matrix;
+use SimpleMath\matrix\Matrix;
 use PHPUnit\Framework\TestCase;
 
 class MatrixTest extends TestCase

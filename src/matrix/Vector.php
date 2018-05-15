@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleMath;
+namespace SimpleMath\matrix;
 
 class Vector
 {
@@ -13,6 +13,20 @@ class Vector
 		$this->vector = $vector;
 		$this->size = count($vector);
 	}
+
+	public function plus(Vector $v2): Vector
+    {
+        if ($this->size !== $v2->size()) {
+            throw new \ErrorException('Vectors must have equal size');
+        }
+
+        $res = [];
+        for ($i=0; $i<$this->size; $i++) {
+            $res[] = $this->vector[$i] + $v2->getValue($i);
+        }
+
+        return new self($res);
+    }
 	
 	public function multiplyScalar($scalar): Vector
 	{
@@ -50,6 +64,11 @@ class Vector
 	{
 		return $this->size;
 	}
+
+	public function getValue(int $index)
+    {
+        return $this->vector[$index];
+    }
 	
 	public function printVector()
 	{
