@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleMath\Tests;
+namespace SimpleMath\Tests\matrix;
 
 use SimpleMath\matrix\Matrix;
 use PHPUnit\Framework\TestCase;
@@ -250,5 +250,19 @@ class MatrixTest extends TestCase
         $m2 = new Matrix($after);
 
         $this->assertEquals($m2, $m1->transpose());
+    }
+
+
+    public function testDet()
+    {
+        $data = [
+            [1,2,3],
+            [3,2,5],
+            [-1,4,-2],
+        ];
+
+        $m = new Matrix($data);
+
+        $this->assertEquals(20, $m->det());
     }
 }

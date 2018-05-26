@@ -2,8 +2,11 @@
 
 namespace SimpleMath\matrix;
 
+use SimpleMath\matrix\determinant\GaussDeterminant;
+
 class Matrix
 {
+    public const DET_GAUSS = 1;
 
     private $matrix;
     private $cols;
@@ -130,6 +133,19 @@ class Matrix
         }
 
         return new Matrix($data);
+    }
+
+    public function det($method = self::DET_GAUSS)
+    {
+        switch ($method) {
+            case self::DET_GAUSS:
+                $det = new GaussDeterminant($this);
+                break;
+            default:
+                $det = new GaussDeterminant($this);
+        }
+
+        return $det->det();
     }
 
 }
