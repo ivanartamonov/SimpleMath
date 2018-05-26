@@ -3,10 +3,12 @@
 namespace SimpleMath\matrix;
 
 use SimpleMath\matrix\determinant\GaussDeterminant;
+use SimpleMath\matrix\determinant\SarrusDeterminant;
 
 class Matrix
 {
-    public const DET_GAUSS = 1;
+    const DET_GAUSS = 1;
+    const DET_SARRUS = 2;
 
     private $matrix;
     private $cols;
@@ -135,11 +137,19 @@ class Matrix
         return new Matrix($data);
     }
 
+    /**
+     * @param int $method
+     * @return number
+     * @throws \SimpleMath\matrix\InvalidMatrixException
+     */
     public function det($method = self::DET_GAUSS)
     {
         switch ($method) {
             case self::DET_GAUSS:
                 $det = new GaussDeterminant($this);
+                break;
+            case self::DET_SARRUS:
+                $det = new SarrusDeterminant($this);
                 break;
             default:
                 $det = new GaussDeterminant($this);

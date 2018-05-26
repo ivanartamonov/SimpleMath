@@ -264,5 +264,6 @@ class MatrixTest extends TestCase
         $m = new Matrix($data);
 
         $this->assertEquals(20, $m->det());
+        $this->assertEquals(20, $m->det(Matrix::DET_SARRUS));
     }
 }
